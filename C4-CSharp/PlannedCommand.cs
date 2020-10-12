@@ -1,34 +1,18 @@
-﻿//using Ganss.XSS;
-//using Markdig;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.CommandLine;
 using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Linq;
 
 namespace C4_CSharp
 {
-    public class BuildCommand : Command
+    public class PlannedCommand : Command
     {
-        private readonly BuildCommandOptions options;
-        //private readonly GeneralOptions generalOptions;
+        private readonly PlannedCommandOptions options;
 
-//        public BuildCommand(BuildCommandOptions options, GeneralOptions generalOptions)
-        public BuildCommand(BuildCommandOptions options)
-           : base("build", "Builds a project.")
+        public PlannedCommand(PlannedCommandOptions options)
+           : base("planned", "How a project is planned.")
         {
-            var name = new Option<string>("--name")
-            {
-                Name = "ProjectName",
-                Description = "The name of the project to build.",
-                IsRequired = true
-            };
-            this.AddOption(name);
-
             var assembly = new Option<string>("--assembly")
             {
                 Name = "Assembly",
@@ -47,16 +31,14 @@ namespace C4_CSharp
 
 
             this.Handler = CommandHandler.Create(
-                (string name, string assembly, string outputFolder) => this.HandleCommand(name, assembly, outputFolder));
+                (string assembly, string outputFolder) => this.HandleCommand(assembly, outputFolder));
             this.options = options;
-
-            //this.generalOptions = generalOptions;
 
             // an alternate execution library
             // https://github.com/Tyrrrz/CliWrap
         }
 
-        private int HandleCommand(string name, string assembly, string outputFolder)
+        private int HandleCommand(string assembly, string outputFolder)
         {
             try
             {
@@ -66,11 +48,6 @@ namespace C4_CSharp
                     if (loaded != null)
                     {
                         var type = typeof(C4DocumentBase);
-                        //Type[] types = loaded.GetTypes();
-                        //foreach (Type t in types)
-                        //{
-                        //    .Where<C4DocumentBase>(t => type.IsAssignableFrom(t));
-                        //}
 
                         string saveToFolder = Path.GetDirectoryName(assembly);
 
@@ -89,16 +66,6 @@ namespace C4_CSharp
                         }
                     }
                 }
-
-                //                Console.WriteLine($"{this.options.ProjectName} {name}!");
-                //Console.WriteLine($"{name}!");
-
-                //string projectFolder = Path.Combine(Environment.CurrentDirectory, name);
-
-                //ShowImage(ToPng(new ContextSample()));
-
-                //GeneratePng(projectFolder);
-                //GenerateHtml(projectFolder);
             }
             catch (Exception ex)
             {

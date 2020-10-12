@@ -6,8 +6,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 //using System.CommandLine;
 using System.CommandLine.Invocation;
+using System.Reflection;
+using System.IO;
+using C4_CSharp.AssemblyDiagram;
 
-namespace C4_Builder_Net
+namespace C4_CSharp
 {
     // Handling of the command line and options
     // https://endjin.com/blog/2020/09/simple-pattern-for-using-system-commandline-with-dependency-injection.html

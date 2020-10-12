@@ -2,7 +2,7 @@
   "profiles": {
     "C4-CSharp": {
       "commandName": "Project",
-      "commandLineArgs": "build --name Test --assembly \"s:\\source\\C4-CSharp\\Samples\\bin\\Debug\\netcoreapp3.1\\Samples.dll\""
+      "commandLineArgs": "asbuilt --assembly \"S:\\Source\\C4-CSharp\\C4-CSharp\\bin\\Debug\\netcoreapp3.1\\c4-csharp.dll\""
     }
   }
 }

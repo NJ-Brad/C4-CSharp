@@ -1,5 +1,4 @@
-﻿using C4_Builder_Net;
-using C4_CSharp;
+﻿using C4_CSharp;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -23,7 +22,7 @@ using System.Text;
     /// </remarks>
     public static IServiceCollection AddCliCommands(this IServiceCollection services)
     {
-        Type grabCommandType = typeof(BuildCommand);
+        Type grabCommandType = typeof(PlannedCommand);
         Type commandType = typeof(Command);
 
         IEnumerable<Type> commands = grabCommandType
@@ -46,8 +45,15 @@ using System.Text;
         services.AddSingleton(sp =>
         {
             return
-               sp.GetRequiredService<IConfiguration>().GetSection("BuildCommand").Get<BuildCommandOptions>()
+               sp.GetRequiredService<IConfiguration>().GetSection("BuildCommand").Get<PlannedCommandOptions>()
                ?? throw new ArgumentException("Build configuration cannot be missing.");
+        });
+
+        services.AddSingleton(sp =>
+        {
+            return
+               sp.GetRequiredService<IConfiguration>().GetSection("AsBuiltCommand").Get<AsBuiltCommandOptions>()
+               ?? throw new ArgumentException("AsBuilt configuration cannot be missing.");
         });
 
         //services.AddSingleton(sp =>
