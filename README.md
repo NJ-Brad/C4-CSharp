@@ -11,3 +11,10 @@ If you find something missing, just let me know and it may be added to the backl
 
 This tool will allow you to write C# code and automatically generate png diagrams as a part of the build process.  (Think nUnit and unit testing)
 
+How to read a class diagram  
+https://plantuml.com/class-diagram  
+
+The class diagram generator that is included in this project will reflect over a compiled assembly.  
+It is based on the work done in https://github.com/pierre3/PlantUmlClassDiagramGenerator.  
+If you have access to the source code, and this project is missing a feature, I would recommendd using Pierre's project.  
+I will continue to add features to this project as they become necessary or requested.  
